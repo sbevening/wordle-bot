@@ -1,0 +1,65 @@
+.board-inner > :first-child {
+    margin-top: 0.2em;
+}
+
+.row {
+    display: flex;
+    height: 2em;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 0.2em;
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    height: 20em;
+}
+
+.exact {
+    background-color: #1B998B;
+}
+
+.in-word {
+    background-color: #CCC500;
+}
+
+.not-in-word {
+    background-color: #2E4C4D;
+}
+
+.char {
+    width: 2em;
+    height: 2em;
+    color: white;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 0em;
+    margin-right: 0em;
+}
+
+.char > p {
+    margin: 0;
+    font-size: larger;
+    display: inline;
+    text-transform: uppercase;
+}
+
+.guess-input {
+    height: 2em;
+    width: 9em;
+    padding: none;
+    border: none;
+    background-color: #2E4C4D;
+    color: white;
+    text-align: center;
+    font-size: larger;
+    text-transform: uppercase;
+}
+
+.guess-input:focus {
+    outline: none;
+}
