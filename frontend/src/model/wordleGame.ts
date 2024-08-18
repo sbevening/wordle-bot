@@ -1,4 +1,5 @@
-import { isValidWord, randomSelectableWord } from "./wordLists";
+import { evaluateGuess, findOptimalGuess, getPossibleGuesses, GuessEvaluation } from "./evaluateGuess";
+import { isValidWord, randomSelectableWord, selectableWords } from "./wordLists";
 
 export enum MatchDegrees {
     Exact,
@@ -25,14 +26,18 @@ export default class WordleGame {
     private letterCounts: Record<string, number>;
     private guessesAllowed: number;
     private guesses: string[];
+    private guessEvaluations: GuessEvaluation[];
     private guessMatches: MatchDegrees[][];
+    private wordsRemaining: Set<string>;
 
-    constructor(guessesAllowed: number) {
-        this.word = randomSelectableWord();
+    constructor(guessesAllowed: number, word=randomSelectableWord()) {
+        this.word = word;
         this.guessesAllowed = guessesAllowed;
         this.letterCounts = this.countCharacters(this.word);
         this.guesses = [];
         this.guessMatches = [];
+        this.guessEvaluations = [];
+        this.wordsRemaining = selectableWords;
     }
 
     makeGuess(guess: string): boolean {
@@ -55,6 +60,9 @@ export default class WordleGame {
         this.guesses.push(guess);
         const matches: MatchDegrees[] = this.matchGuess(guess);
         this.guessMatches.push(matches);
+
+        this.guessEvaluations.push(evaluateGuess(guess, matches, this.wordsRemaining));
+        this.wordsRemaining = getPossibleGuesses(guess, matches, this.wordsRemaining);
         
         return matches.every((m) => (m == MatchDegrees.Exact)) || this.guesses.length >= this.guessesAllowed;
     }
@@ -120,7 +128,15 @@ export default class WordleGame {
         return [...this.guesses]; // shallow copy of guesses
     }
 
+    getWordsRemaining(): Set<string> {
+        return new Set(this.wordsRemaining);
+    }
+
     getGuessMatches(): MatchDegrees[][] {
         return [...this.guessMatches];
+    }
+
+    getGuessEvaluations(): GuessEvaluation[] {
+        return [...this.guessEvaluations];
     }
 }

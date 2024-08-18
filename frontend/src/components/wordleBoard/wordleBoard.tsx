@@ -4,6 +4,7 @@ import "./wordleBoard.css";
 import WordleGame from "../../model/wordleGame";
 import { MatchDegrees } from "../../model/wordleGame";
 import EndScreen from "../endScreen/endScreen";
+import { findOptimalGuess, t } from "../../model/evaluateGuess";
 
 interface WordleBoardProps {
     game: WordleGame;
@@ -19,7 +20,9 @@ class CouldNotMakeGuessError extends Error {
 const WordleBoard: FC<WordleBoardProps> = (props) => {
     const [game, setGame] = useState(props.game);
     const [guesses, setGuesses] = useState([] as string[]);
+    const [optimalGuesses, setOptimalGuesses] = useState([] as string[]);
     const [isOver, setIsOver] = useState(false);
+    t();
 
     const GuessForm = () => {
         const [currGuess, setCurrGuess] = useState("");
@@ -29,6 +32,8 @@ const WordleBoard: FC<WordleBoardProps> = (props) => {
             const isDone: boolean = game.makeGuess(lowerGuess);
             setGuesses(game.getGuesses());
             setCurrGuess("");
+            const wordsRemaining = game.getWordsRemaining();
+            setOptimalGuesses([...optimalGuesses, findOptimalGuess(wordsRemaining)]);
 
             if (isDone) {
                 setIsOver(true);
@@ -104,11 +109,14 @@ const WordleBoard: FC<WordleBoardProps> = (props) => {
 
     return isOver ? (
         <EndScreen
-            message={`The word was: ${game.getWord().toUpperCase()}.`}
-            buttonText={"Play Again"}
+            message={`the word was: ${game.getWord().toUpperCase()}.`}
+            buttonText={"play again"}
+            optimalGuesses={optimalGuesses}
+            guessEvaluations={game.getGuessEvaluations()}
             onClick={(event) => {
                 setIsOver(false);
                 setGame(new WordleGame(6));
+                setOptimalGuesses([] as string[]);
                 setGuesses([] as string[]);
                 setIsOver(false);
             }}

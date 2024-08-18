@@ -1,0 +1,33 @@
+p {
+    font-size: medium;
+    display: inline;
+    margin-left: 1em;
+    margin-right: 1em;
+    text-align: center;
+}
+
+.guess {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.outer {
+    display: flex;
+}
+
+.progress-bar {
+    margin: 0.1em;
+}
+
+.progress-bar-container-inner {
+    width: 2em;
+    height: 2em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+}
+
+.progress-bar-container-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

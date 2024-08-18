@@ -1,0 +1,13 @@
+.evaluation > * {
+    margin-bottom: 1em;
+}
+
+.play-again {
+    background-color: #2E4C4D;
+    border: 2px solid #1B998B;;
+    border-radius: 1em;
+    padding: 0.5em;
+    margin: 1em;
+    color: white;
+    font-size: large;
+}
