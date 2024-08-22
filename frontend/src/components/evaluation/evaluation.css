@@ -12,7 +12,15 @@ p {
 }
 
 .outer {
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 0.25em;
+    padding: 0.5em;
+    border: 1px solid #CCC500;
+}
+
+.inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .progress-bar {
@@ -30,4 +38,9 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.description {
+    font-size: xx-small;
+    display: inline;
 }

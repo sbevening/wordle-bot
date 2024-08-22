@@ -15,7 +15,7 @@ interface EndScreenProps {
 const EndScreen: FC<EndScreenProps> = (props) => {
     return (
         <div className="end-screen">
-            <p>{props.message}</p>
+            <h1 className="message">{props.message}</h1>
             <div className="evaluations">
                 {props.guessEvaluations.map((e, i) => (
                     <Evaluation

@@ -3,9 +3,6 @@ import { guessableWords, selectableWords } from "./wordLists";
 import wordFrequenciesRaw from "./data/wordFrequencies.json";
 const wordFrequencies = wordFrequenciesRaw as Record<string, number>;
 
-export const t = () => {
-};
-
 export interface GuessEvaluation {
     guess: string,
     frequencies: number,

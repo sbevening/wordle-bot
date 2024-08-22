@@ -4,7 +4,7 @@ import "./wordleBoard.css";
 import WordleGame from "../../model/wordleGame";
 import { MatchDegrees } from "../../model/wordleGame";
 import EndScreen from "../endScreen/endScreen";
-import { findOptimalGuess, t } from "../../model/evaluateGuess";
+import { findOptimalGuess } from "../../model/evaluateGuess";
 
 interface WordleBoardProps {
     game: WordleGame;
@@ -22,7 +22,6 @@ const WordleBoard: FC<WordleBoardProps> = (props) => {
     const [guesses, setGuesses] = useState([] as string[]);
     const [optimalGuesses, setOptimalGuesses] = useState([] as string[]);
     const [isOver, setIsOver] = useState(false);
-    t();
 
     const GuessForm = () => {
         const [currGuess, setCurrGuess] = useState("");
@@ -109,7 +108,7 @@ const WordleBoard: FC<WordleBoardProps> = (props) => {
 
     return isOver ? (
         <EndScreen
-            message={`the word was: ${game.getWord().toUpperCase()}.`}
+            message={`THE WORD WAS: ${game.getWord().toUpperCase()}.`}
             buttonText={"play again"}
             optimalGuesses={optimalGuesses}
             guessEvaluations={game.getGuessEvaluations()}
