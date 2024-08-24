@@ -18,15 +18,15 @@
 }
 
 .exact {
-    background-color: #1B998B;
+    background-color: var(--theme-green);
 }
 
 .in-word {
-    background-color: #CCC500;
+    background-color: var(--theme-yellow);
 }
 
 .not-in-word {
-    background-color: #2E4C4D;
+    background-color: var(--theme-grey);
 }
 
 .char {
@@ -53,7 +53,7 @@
     width: 9em;
     padding: none;
     border: none;
-    background-color: #2E4C4D;
+    background-color: var(--theme-grey);
     color: white;
     text-align: center;
     font-size: larger;

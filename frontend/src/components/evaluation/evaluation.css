@@ -15,7 +15,7 @@ p {
     background-color: rgba(0, 0, 0, 0.2);
     margin: 0.25em;
     padding: 0.5em;
-    border: 1px solid #CCC500;
+    border: 1px solid var(--theme-yellow);
 }
 
 .inner {

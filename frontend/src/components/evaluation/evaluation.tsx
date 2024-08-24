@@ -7,18 +7,18 @@ import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { GuessEvaluation } from "../../model/evaluateGuess";
 import Tippy from "@tippyjs/react";
 
-const GOOD_SCORE_COLOR: string = "#1B998B";
-const OK_SCORE_COLOR: string = "#CCC500";
+const GOOD_SCORE_COLOR: string = "var(--theme-green)";
+const OK_SCORE_COLOR: string = "var(--theme-yellow)";
 
 const ELIMINATION_DESCRIPTION = `
     A score from 0 to 100 based on how many possible guesses in the Wordle dictionary
-    your guess eliminates. A score of 100 means that there is only 1 possible answe.
+    your guess eliminates. A score of 100 means that there is only 1 possible answer.
 `;
 
 const MATCH_DESCRIPTION = `
     A score from 0 to 100 based on how well your letters match up with the correct guess.
     Green matches are weighted more heavily than yellow matches. A score of 100 is only
-    achieved on acorrect guess. 
+    achieved on a correct guess. 
 `;
 
 const FREQUENCY_DESCRIPTION = `
@@ -35,7 +35,7 @@ const buildProgressBarStyles = (value: number) =>
     buildStyles({
         pathColor: value < 90 ? OK_SCORE_COLOR : GOOD_SCORE_COLOR,
         textColor: value < 90 ? OK_SCORE_COLOR : GOOD_SCORE_COLOR,
-        trailColor: "#2E4C4D",
+        trailColor: "var(--theme-grey)",
     });
 
 export const Evaluation: FC<EvaluationProps> = (props) => {
